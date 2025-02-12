@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AdFriend Options</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input[type="text"] {
+      width: 300px;
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    select {
+        width: 300px;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>AdFriend Options</h1>
+
+  <label for="widgetType">Widget Type:</label>
+  <select id="widgetType" name="widgetType">
+    <option value="quote">Motivational Quote</option>
+    <option value="reminder">Activity Reminder</option>
+    <option value="custom">Custom Text</option>
+  </select>
+
+  <label for="customWidgetText">Custom Widget Text:</label>
+  <input type="text" id="customWidgetText" name="customWidgetText">
+
+  <button id="save">Save</button>
+
+  <script src="options.js"></script>
+</body>
+</html>

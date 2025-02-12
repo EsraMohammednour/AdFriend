@@ -1,23 +1,30 @@
 {
   "manifest_version": 3,
-  "name": "Ad Replacer - Workout Edition",
+  "name": "AdFriend: Positive Vibes Only!",
   "version": "1.0",
-  "description": "Replace ads with workout exercises to stay active!",
-  "permissions": ["activeTab", "scripting"],
-  "host_permissions": ["*://*/*"],
+  "description": "Replaces ads with motivational quotes, activity reminders, and more!",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "options_page": "options.html",
+  "background": {
+    "service_worker": "background.js"
+  },
   "content_scripts": [
     {
-      "matches": ["*://*/*"],
+      "matches": ["<all_urls>"],
       "js": ["content.js"],
-      "run_at": "document_idle"
+      "css": ["style.css"]
     }
   ],
-  "action": {
-    "default_popup": "popup.html",
-    "icons": {
-      "16": "images/icon16.png",
-      "48": "images/icon48.png",
-      "128": "images/icon128.png"
-    }
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
   }
-}  
+}
