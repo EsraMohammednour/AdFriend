@@ -4,6 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const message = document.createElement("div");
     message.className = "motivational-message";
     message.innerText = "Keep pushing forward! You're doing great!";
-    ad.replaceWith(message);
+    ad.parentNode.replaceChild(message, ad);
   });
 });
