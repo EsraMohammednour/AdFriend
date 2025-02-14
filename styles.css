@@ -1,23 +1,54 @@
 .motivational-message {
-  background-color: #ff6f61;
+  background: linear-gradient(145deg, #ff6f61, #ff4757);
   color: #fff;
-  font-weight: bold;
-  padding: 15px;
+  padding: 1.5rem;
   border-radius: 12px;
-  text-align: center;
-  margin: 5px;
+  margin: 10px;
   position: relative;
-  font-size: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  font-size: 1.1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.motivational-message:hover {
+  transform: translateY(-2px);
 }
 
 .close-button {
   position: absolute;
-  top: 5px;
-  right: 10px;
-  background: none;
+  top: 8px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.2);
   border: none;
+  border-radius: 50%;
   color: #fff;
-  font-size: 20px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.close-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.fade-out {
+  animation: fadeOut 0.5s ease forwards;
 }
