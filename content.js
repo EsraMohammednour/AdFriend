@@ -1,7 +1,7 @@
 /**
  * This script listens for the DOMContentLoaded event and then selects all elements
- * that match the specified ad-related selectors. For each selected ad element, 
- * it creates a new div element with a motivational message and replaces the ad 
+ * that match the specified ad-related selectors. For each selected ad element,
+ * it creates a new div element with a motivational message and replaces the ad
  * element with this new message element.
  *
  * Ad selectors:
@@ -27,47 +27,60 @@
  *
  * The motivational message displayed is: "Keep pushing forward! You're doing great!"
  */
-document.addEventListener("DOMContentLoaded", () => {
-  const messages = [
-    "Keep pushing forward! You're doing great!",
-    "Believe in yourself and all that you are.",
-    "Your potential is limitless.",
-    "Success is the sum of small efforts, repeated daily.",
-    "Don't watch the clock; do what it does. Keep going.",
-    "You are capable of amazing things.",
-    "Dream it. Believe it. Build it.",
-    "Be stronger than your excuses.",
-    "Make today amazing!",
-    "Your only limit is your mind.",
-    "Work hard in silence, let success make the noise.",
-    "Believe in the power of yet.",
-    "Difficult roads lead to beautiful destinations.",
-    "Focus on progress, not perfection.",
-    "You got this!",
-    "Every day is a second chance.",
-    "Small steps lead to big results.",
-    "Success doesn’t come from what you do occasionally.",
-    "Don’t stop when you’re tired, stop when you’re done.",
-    "Stay positive, work hard, make it happen."
-  ];
+document.addEventListener('DOMContentLoaded', () => {
+  // Check if the extension is set as active.
+  chrome.storage.local.get({ extensionActive: true }, (data) => {
+    if (!data.extensionActive) {
+      console.log('Extension is inactive. Skipping ad replacement.')
+      return
+    }
 
-  const ads = document.querySelectorAll("iframe, .ad, .ads, [id*='ad']");
-  ads.forEach(ad => {
-    const message = document.createElement("div");
-    message.className = "motivational-message";
-    message.innerText = messages[Math.floor(Math.random() * messages.length)];
-    
-    const closeButton = document.createElement("button");
-    closeButton.innerText = "×";
-    closeButton.className = "close-button";
-  
-    
-    message.appendChild(closeButton);
-    ad.parentNode.replaceChild(message, ad);
-    closeButton.onclick = () => message.remove();
-    setTimeout(() => {
-      message.style.animation = "fadeOut 0.5s ease-in-out";
-      setTimeout(() => message.remove(), 500);
-    }, 15000);
-  });
-});
+    // Proceed only if the extension is active.
+    const ads = document.querySelectorAll(
+      ".ad-container, #ad-banner, iframe, .ad, .ads, [id*='ad']"
+    )
+    // Array of motivational messages.
+    const motivationalMessages = [
+      "Keep pushing forward! You're doing great!",
+      'Believe in yourself. You are stronger than you think!',
+      'Every day is a new opportunity to shine!',
+      'Success is just around the corner. Keep going!',
+      "You've got this! Don't give up!",
+      'The only way to do great work is to love what you do',
+      'Even the darkest night will end and the sun will rise',
+      'Progress, not perfection',
+      'The best view comes after the hardest climb',
+      'Your hard work will pay off. Stay patient',
+    ]
+
+    // Function to get a random motivational message.
+    function getRandomMessage() {
+      const randomIndex = Math.floor(
+        Math.random() * motivationalMessages.length
+      )
+      return motivationalMessages[randomIndex]
+    }
+
+    // Replace an ad with a motivational message.
+    function replaceAdWithMotivationalMessage(ad) {
+      const message = document.createElement('div')
+      message.className = 'motivational-message'
+      message.innerText = getRandomMessage()
+      ad.parentNode.replaceChild(message, ad)
+      const closeButton = document.createElement('button')
+      closeButton.innerText = '×'
+      closeButton.className = 'close-button'
+      message.appendChild(closeButton)
+      closeButton.onclick = () => message.remove()
+      setTimeout(() => {
+        message.style.animation = 'fadeOut 0.5s ease-in-out'
+        setTimeout(() => message.remove(), 500)
+      }, 15000)
+    }
+
+    // Loop through all targeted ad elements and replace them.
+    ads.forEach((ad) => {
+      replaceAdWithMotivationalMessage(ad)
+    })
+  })
+})
