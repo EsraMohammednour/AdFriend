@@ -1,6 +1,8 @@
-#ad-friend-widget-container {
-  border: 1px solid #ccc;
+.motivational-message {
+  background-color: #ffeb3b;
+  color: #333;
+  font-weight: bold;
   padding: 10px;
-  margin-bottom: 10px;
-  background-color: #f9f9f9;
-  text-align: center; /* Center the text within the widget */
+  border-radius: 5px;
+  text-align: center;
+}
