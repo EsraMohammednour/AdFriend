@@ -28,6 +28,7 @@
  * The motivational message displayed is: "Keep pushing forward! You're doing great!"
  */
 document.addEventListener("DOMContentLoaded", () => {
+
   const messages = [
     "Keep pushing forward! You're doing great!",
     "Believe in yourself and all that you are.",
