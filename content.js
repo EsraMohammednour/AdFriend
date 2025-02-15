@@ -1,7 +1,7 @@
 /**
  * This script listens for the DOMContentLoaded event and then selects all elements
- * that match the specified ad-related selectors. For each selected ad element,
- * it creates a new div element with a motivational message and replaces the ad
+ * that match the specified ad-related selectors. For each selected ad element, 
+ * it creates a new div element with a motivational message and replaces the ad 
  * element with this new message element.
  *
  * Ad selectors:
@@ -26,81 +26,50 @@
  * @function setTimeout - Sets a timer to automatically fade out and remove the message after 15 seconds.
  *
  * The motivational message displayed is: "Keep pushing forward! You're doing great!"
- */ document.addEventListener('DOMContentLoaded', () => {
-  let observer
-  const config = { attributes: true, childList: true, subtree: true }
+ */
+document.addEventListener("DOMContentLoaded", () => {
+  const messages = [
+    "Keep pushing forward! You're doing great!",
+    "Believe in yourself and all that you are.",
+    "Your potential is limitless.",
+    "Success is the sum of small efforts, repeated daily.",
+    "Don't watch the clock; do what it does. Keep going.",
+    "You are capable of amazing things.",
+    "Dream it. Believe it. Build it.",
+    "Be stronger than your excuses.",
+    "Make today amazing!",
+    "Your only limit is your mind.",
+    "Work hard in silence, let success make the noise.",
+    "Believe in the power of yet.",
+    "Difficult roads lead to beautiful destinations.",
+    "Focus on progress, not perfection.",
+    "You got this!",
+    "Every day is a second chance.",
+    "Small steps lead to big results.",
+    "Success doesn’t come from what you do occasionally.",
+    "Don’t stop when you’re tired, stop when you’re done.",
+    "Stay positive, work hard, make it happen."
+  ];
 
-  const processAds = () => {
-    chrome.storage.local.get({ extensionActive: true }, (data) => {
-      if (!data.extensionActive) {
-        if (observer) observer.disconnect()
-        document
-          .querySelectorAll('.motivational-message')
-          .forEach((msg) => msg.remove())
-        return
-      }
-
-      const adSelectors = [
-        '.ad-container',
-        '#ad-banner',
-        'iframe[src*="ad"]',
-        '.ad',
-        '.ads',
-        '[id*="ad"]',
-        '[class*="ad"]',
-        'div[data-ad], ins.adsbygoogle',
-      ]
-
-      const handleMutations = (mutations) => {
-        mutations.forEach((mutation) => {
-          mutation.addedNodes.forEach((node) => {
-            if (node.nodeType === 1) {
-              const ads = node.matches(adSelectors)
-                ? [node]
-                : node.querySelectorAll(adSelectors)
-              ads.forEach(processAd)
-            }
-          })
-        })
-      }
-
-      observer = new MutationObserver(handleMutations)
-      observer.observe(document.documentElement, config)
-
-      document.querySelectorAll(adSelectors).forEach(processAd)
-    })
-  }
-
-  const processAd = (ad) => {
-    if (!isVisible(ad)) return
-
-    const message = createMessageElement()
-    ad.parentNode.replaceChild(message, ad)
-  }
-
-  const isVisible = (el) => {
-    const style = window.getComputedStyle(el)
-    return (
-      style.display !== 'none' &&
-      style.visibility !== 'hidden' &&
-      el.offsetWidth > 0 &&
-      el.offsetHeight > 0
-    )
-  }
-
-  const createMessageElement = () => {
-    const message = document.createElement('div')
-    message.className = 'motivational-message'
-    message.innerHTML = `
-      <div class="message-content">${getRandomMessage()}</div>
-      <button class="close-button" aria-label="Close">×</button>
-    `
-
-    message.querySelector('.close-button').onclick = () => message.remove()
-    setTimeout(() => message.classList.add('fade-out'), 15000)
-    return message
-  }
-
-  chrome.storage.onChanged.addListener(processAds)
-  processAds()
-})
+  const ads = document.querySelectorAll(
+    "iframe, .ad, .ads,  [id*='ad'], .ad-container, #ad-banner"
+  );
+  ads.forEach(ad => {
+    const message = document.createElement("div");
+    message.className = "motivational-message";
+    message.innerText = messages[Math.floor(Math.random() * messages.length)];
+    
+    const closeButton = document.createElement("button");
+    closeButton.innerText = "×";
+    closeButton.className = "close-button";
+  
+    
+    message.appendChild(closeButton);
+    ad.parentNode.replaceChild(message, ad);
+    closeButton.onclick = () => message.remove();
+    setTimeout(() => {
+      message.style.animation = "fadeOut 0.5s ease-in-out";
+      setTimeout(() => message.remove(), 500);
+    }, 15000);
+  });
+});

@@ -1,18 +1,20 @@
+
+
+
+
 .motivational-message {
-  background: linear-gradient(145deg, #ff6f61, #ff4757);
+  background: linear-gradient(135deg,rgb(67, 166, 166),rgb(61, 47, 28));
   color: #fff;
-  padding: 1.5rem;
-  border-radius: 12px;
+  font-weight: bold;
+  padding: 15px;
+  border-radius: 15px;
+  text-align: center;
   margin: 10px;
   position: relative;
-  font-size: 1.1rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease;
-  min-height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  font-size: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards, floatAnimation 4s infinite alternate ease-in-out;
 }
 
 .motivational-message:hover {
@@ -40,15 +42,42 @@
   background: rgba(255, 255, 255, 0.3);
 }
 
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
+
 
 .fade-out {
   animation: fadeOut 0.5s ease forwards;
+}
+
+
+.close-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.7); }
+  to { opacity: 1; transform: scale(1); }
+
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.7); }
+
+  to { opacity: 0; transform: scale(0.8); }
+}
+
+@keyframes floatAnimation {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(15px); }
+  100% { transform: translateY(-5px); }
+
+  to { transform: translateY(10px); }
 }
