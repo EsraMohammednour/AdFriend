@@ -47,7 +47,7 @@ AdFriend uses a three-layer approach:
 
 ```mermaid
 graph TD
-    A[Ad Detection] -->|CSS Selectors| B(DOM Manipulation)
+    A[Ad Detection] -->|Selectors| B(DOM Manipulation)
     B -->|Replace Elements| C[Motivational Widget]
     C -->|Random Selection| D[Message Display]
     D -->|15s Timer| E[Auto-Fade]
