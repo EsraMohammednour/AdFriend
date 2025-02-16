@@ -96,14 +96,4 @@ graph TD
 - [ ] Firefox/Edge Support
 - [ ] Chrome Web Store Deployment
 
-## 🤝 Contribute & Connect
-
-We welcome contributions! Please read our [Contribution Guidelines](CONTRIBUTING.md) before submitting PRs.
-
-**Get in Touch** 📬  
-- Email: [team@adfriend.dev](mailto:esraa2023112@gmail.com)
-- Discord: [Join our Community](https://discord.gg/your-link)
-
----
-
 Made with ❤️ by Team AdFriend - Transforming the web one ad at a **time**!
