@@ -65,7 +65,7 @@ graph TD
 |----------------------|-----------------------------|---------------------------------------|--------------------------------------|
 | Project Lead         | Esra Mohammednour Mohammed  | Core Architecture & Logic             | Codes to lofi beats! 🎧             |
 | Ad Detection Expert  | Akram Adam Hassan           | Selector Engine & DOM Manipulation    | Rubik's Cube champion 🎯            |
-| UI/UX Designer       | Omer Abdulrahim Eltoum      | Visual Design & Animations            | Minimalism enthusiast 🖼️            |
+| Lead Software Engineer | Omer Abdulrahim Eltoum      | Visual Design & Implementation        | Minimalism enthusiast 🖼️            |
 
 ## 🌟 Why AdFriend?
 
